@@ -10,4 +10,5 @@
     'data': [ ],
     'demo': [
     ],
+    'application': 'true',
 } 
