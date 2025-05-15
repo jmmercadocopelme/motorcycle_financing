@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="rule_loan_signed_no_write_delete" model="ir.rule">
+        <field name="name">No modify or delete signed loans for users</field>
+        <field name="model_id" ref="model_loan_application"/>
+        <field name="domain_force">[('state', 'not in', ['signed'])]</field>
+        <field name="groups" eval="[(4, ref('motorcycle_financing.group_financing_user'))]"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>
