@@ -9,7 +9,7 @@
         <field name="interest_rate">5.5</field>
         <field name="loan_term">24</field>
         <field name="state">draft</field>
-        <field name="currency_id" ref="base.main_company_currency"/>
+
     </record>
     <record id="loan_demo_2" model="loan.application">
         <field name="name">LN-0002</field>
@@ -20,7 +20,7 @@
         <field name="interest_rate">6.0</field>
         <field name="loan_term">36</field>
         <field name="state">approved</field>
-        <field name="currency_id" ref="base.main_company_currency"/>
+
     </record>
     <record id="loan_demo_3" model="loan.application">
         <field name="name">LN-0003</field>
@@ -31,6 +31,6 @@
         <field name="interest_rate">4.8</field>
         <field name="loan_term">18</field>
         <field name="state">rejected</field>
-        <field name="currency_id" ref="base.main_company_currency"/>
+
     </record>
 </odoo>
