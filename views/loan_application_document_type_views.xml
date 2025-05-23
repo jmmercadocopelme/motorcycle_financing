@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_loan_application_document_type" model="ir.actions.act_window">
+        <field name="name">Loan Application Document Types</field>
+        <field name="res_model">loan.application.document.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_loan_application_document_type_tree" model="ir.ui.view">
+        <field name="name">loan.application.document.type.tree</field>
+        <field name="model">loan.application.document.type</field>
+        <field name="arch" type="xml">
+            <tree string="Loan Application Document Types">
+                <field name="name"/>
+                <field name="document_number"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_loan_application_document_type_form" model="ir.ui.view">
+        <field name="name">loan.application.document.type.form</field>
+        <field name="model">loan.application.document.type</field>
+        <field name="arch" type="xml">
+            <form string="Loan Application Document Type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="document_number"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

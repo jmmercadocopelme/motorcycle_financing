@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem
+        id="menu_motorcycle_finance_dashboard"
+        name="Moto Finance"
+        sequence="10"
+        />
+
+    <menuitem
+        id="menu_motorcycle_financing"
+        name="Motorcycle Financing"
+        parent="menu_motorcycle_finance_dashboard"
+        sequence="10"
+        />
+
+    <menuitem
+        id="menu_loan_application"
+        name="Loan Applications"
+        parent="menu_motorcycle_financing"
+        action="action_loan_application"
+        sequence="10"
+        />
+</odoo>

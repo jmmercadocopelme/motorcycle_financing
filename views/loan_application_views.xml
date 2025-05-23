@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_loan_application" model="ir.actions.act_window">
+        <field name="name">Loan Applications</field>
+        <field name="res_model">loan.application</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create your first Loan Application
+            </p>
+        </field>
+    </record>
+
+    <record id="view_loan_application_tree" model="ir.ui.view">
+        <field name="name">loan.application.tree</field>
+        <field name="model">loan.application</field>
+        <field name="arch" type="xml">
+            <tree string="Loan Applications">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="loan_amount"/>
+                <field name="down_payment"/>
+                <field name="interest_rate"/>
+                <field name="loan_term"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_loan_application_form" model="ir.ui.view">
+        <field name="name">loan.application.form</field>
+        <field name="model">loan.application</field>
+        <field name="arch" type="xml">
+            <form string="Loan Application">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="user_id"/>
+                        <field name="loan_amount"/>
+                        <field name="down_payment"/>
+                        <field name="interest_rate"/>
+                        <field name="loan_term"/>
+                        <field name="state"/>
+                        <field name="notes" widget="html"/>
+                        <field name="tag_ids" widget="many2many_tags"/>
+                    </group>
+                    <notebook>
+                        <page string="Documents">
+                            <field name="document_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="type_id"/>
+                                    <field name="state"/>
+                                    <field name="attachment" widget="binary"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_loan_application_search" model="ir.ui.view">
+        <field name="name">loan.application.search</field>
+        <field name="model">loan.application</field>
+        <field name="arch" type="xml">
+            <search string="Loan Applications">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <filter string="Approved" domain="[('state','=','approved')]"/>
+                <filter string="Draft" domain="[('state','=','draft')]"/>
+                <filter string="Rejected" domain="[('state','=','rejected')]"/>
+            </search>
+        </field>
+    </record>
+</odoo>
