@@ -1,0 +1,28 @@
+<odoo>
+    <record id="view_order_form_inherit_loan" model="ir.ui.view">
+        <field name="name">sale.order.form.loan.application</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="Loan Applications" attrs="{'invisible': [('is_financed', '=', False)]}">
+                    <field name="loan_application_ids">
+                        <tree>
+                            <field name="name"/>
+                            <field name="state"/>
+                            <field name="loan_amount"/>
+                            <field name="partner_id"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//header/button[@name='action_confirm']" position="before">
+                <button name="action_apply_loan" type="object" string="Apply for Loan"
+                        attrs="{'invisible': [('is_financed', '=', False)]}" class="btn-primary"/>
+            </xpath>
+            <xpath expr="//group[@name='sale_order_option']" position="after">
+                <field name="is_financed" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

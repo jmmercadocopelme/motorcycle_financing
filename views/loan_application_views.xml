@@ -1,9 +1,19 @@
 <odoo>
+    <!-- Form View -->
     <record id="view_loan_application_form" model="ir.ui.view">
         <field name="name">loan.application.form</field>
         <field name="model">loan.application</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_send_for_approval" type="object" string="Send for Approval"
+                            attrs="{'invisible': [('state', 'not in', ['draft'])]}" class="btn-primary"/>
+                    <button name="action_approve_loan" type="object" string="Approve Loan"
+                            attrs="{'invisible': [('state', '!=', 'sent')]}" class="btn-success"/>
+                    <button name="action_reject_loan" type="object" string="Reject Loan"
+                            attrs="{'invisible': [('state', 'in', ['approved', 'rejected'])]}" class="btn-danger"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,review,approved,rejected,signed"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="name"/>
@@ -12,9 +22,9 @@
                         <field name="sale_order_id"/>
                         <field name="user_id"/>
                         <field name="product_template_id"/>
-                        <field name="loan_amount"/>
-                        <field name="down_payment"/>
-                        <field name="interest_rate"/>
+                        <field name="loan_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="down_payment" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="interest_rate" widget="percentage"/>
                         <field name="loan_term"/>
                         <field name="state"/>
                         <field name="date_application"/>
@@ -23,14 +33,51 @@
                         <field name="date_signed"/>
                         <field name="rejection_reason"/>
                         <field name="notes"/>
-                        <field name="tag_ids" widget="many2many_tags"/>
-                        <field name="document_ids"/>
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    </group>
+                    <notebook>
+                        <page string="Documents">
+                            <field name="document_ids" context="{'form_view_ref': 'motorcycle_financing.view_loan_application_document_form_inline'}">
+                                <tree editable="bottom" decoration-success="state == 'approved'"
+                                      decoration-danger="state == 'rejected'"
+                                      decoration-muted="state == 'new'">
+                                    <field name="name"/>
+                                    <field name="type_id"/>
+                                    <field name="attachment" widget="binary"/>
+                                    <field name="state" widget="badge"/>
+                                    <field name="sequence"/>
+                                    <button name="action_approve_document" type="object" icon="fa-check" string="Approve" attrs="{'invisible': [('state', '=', 'approved')]}"/>
+                                    <button name="action_reject_document" type="object" icon="fa-times" string="Reject" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Inline Form for Documents -->
+    <record id="view_loan_application_document_form_inline" model="ir.ui.view">
+        <field name="name">loan.application.document.form.inline</field>
+        <field name="model">loan.application.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="type_id"/>
+                        <field name="attachment" widget="binary"/>
+                        <field name="state" widget="badge"/>
+                        <field name="sequence"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
+    <!-- List View -->
     <record id="view_loan_application_list" model="ir.ui.view">
         <field name="name">loan.application.list</field>
         <field name="model">loan.application</field>
@@ -38,15 +85,17 @@
             <list>
                 <field name="name"/>
                 <field name="partner_id"/>
-                <field name="loan_amount"/>
-                <field name="interest_rate"/>
+                <field name="loan_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="interest_rate" widget="percentage"/>
                 <field name="loan_term"/>
                 <field name="state"/>
                 <field name="user_id"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
             </list>
         </field>
     </record>
 
+    <!-- Search View -->
     <record id="view_loan_application_search" model="ir.ui.view">
         <field name="name">loan.application.search</field>
         <field name="model">loan.application</field>
@@ -63,6 +112,7 @@
         </field>
     </record>
 
+    <!-- Window Action -->
     <record id="action_loan_application" model="ir.actions.act_window">
         <field name="name">Loan Applications</field>
         <field name="res_model">loan.application</field>

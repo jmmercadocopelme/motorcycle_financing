@@ -9,8 +9,9 @@
                         <field name="name"/>
                         <field name="application_id"/>
                         <field name="type_id"/>
-                        <field name="attachment"/>
-                        <field name="state"/>
+                        <field name="attachment" widget="binary"/>
+                        <field name="state" widget="badge"/>
+                        <field name="sequence"/>
                     </group>
                 </sheet>
             </form>
@@ -20,11 +21,17 @@
         <field name="name">loan.application.document.list</field>
         <field name="model">loan.application.document</field>
         <field name="arch" type="xml">
-            <list>
+            <list editable="bottom" decoration-success="state == 'approved'"
+                  decoration-danger="state == 'rejected'"
+                  decoration-muted="state == 'new'">
                 <field name="name"/>
                 <field name="application_id"/>
                 <field name="type_id"/>
-                <field name="state"/>
+                <field name="attachment" widget="binary"/>
+                <field name="state" widget="badge"/>
+                <field name="sequence"/>
+                <button name="action_approve_document" type="object" icon="fa-check" string="Approve" attrs="{'invisible': [('state', '=', 'approved')]}"/>
+                <button name="action_reject_document" type="object" icon="fa-times" string="Reject" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
             </list>
         </field>
     </record>
