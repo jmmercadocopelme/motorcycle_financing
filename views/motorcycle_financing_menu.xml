@@ -1,7 +1,7 @@
 <odoo>
     <menuitem id="menu_moto_finance_root" name="Moto Finance" sequence="10"/>
     <menuitem id="menu_motorcycle_financing" name="Motorcycle Financing" parent="menu_moto_finance_root" sequence="10"/>
-    <menuitem id="menu_loan_applications" name="Loan Applications" parent="menu_motorcycle_financing" action="action_loan_application" sequence="10"/>
+    <menuitem id="menu_loan_applications" name="Loan Applications" parent="menu_motorcycle_financing" action="motorcycle_financing.action_loan_application" sequence="10"/>
     <menuitem id="menu_loan_application_tag" name="Loan Application Tags" parent="menu_motorcycle_financing" action="action_loan_application_tag" sequence="20"/>
     <menuitem id="menu_loan_application_document" name="Loan Application Documents" parent="menu_motorcycle_financing" action="action_loan_application_document" sequence="30"/>
     <menuitem id="menu_loan_application_document_type" name="Loan Application Document Types" parent="menu_motorcycle_financing" action="action_loan_application_document_type" sequence="40"/>
