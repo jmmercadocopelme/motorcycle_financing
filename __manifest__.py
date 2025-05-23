@@ -5,7 +5,7 @@
     'license': 'OPL-1',
     'category': 'Kawiil/Custom Modules',
     'author': 'jmmercadocopelme',
-    'website': 'https://github.com/jmmercadocopelme/motorcycle_financing/tree/task2',
+    'website': 'git@github.com:jmmercadocopelme/motorcycle_financing.git',
     'version': '18.0.0.0.1',
     'depends': ['sale'],
     'data': [
