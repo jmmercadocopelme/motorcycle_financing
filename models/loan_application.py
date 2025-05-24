@@ -9,7 +9,7 @@ class LoanApplication(models.Model):
 
     name = fields.Char(string='Application Number', required=True)
     sale_order_id = fields.Many2one('sale.order', string='Related Sale Order')
-    type_id = fields.Many2one('loan.type', string='Loan Type')
+    type_id = fields.Many2one('loan.application.document.type', string='Type')
     attachment = fields.Binary(string="Attachment")
     sequence = fields.Integer(string='Sequence', default=10)
     sale_order_total = fields.Monetary(

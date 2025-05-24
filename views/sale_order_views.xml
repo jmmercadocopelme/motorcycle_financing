@@ -5,12 +5,11 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet/notebook" position="inside">
-                <page string="Loan Applications" attrs="{'invisible': [('is_financed', '=', False)]}">
+                <page string="Loan Applications" if="is_financed">
                     <field name="loan_application_ids">
                         <tree>
                             <field name="name"/>
                             <field name="state"/>
-                            <field name="loan_amount"/>
                             <field name="partner_id"/>
                         </tree>
                     </field>
@@ -18,9 +17,9 @@
             </xpath>
             <xpath expr="//header/button[@name='action_confirm']" position="before">
                 <button name="action_apply_loan" type="object" string="Apply for Loan"
-                        attrs="{'invisible': [('is_financed', '=', False)]}" class="btn-primary"/>
+                        if="is_financed" class="btn-primary"/>
             </xpath>
-            <xpath expr="//group[@name='sale_order_option']" position="after">
+            <xpath expr="//sheet" position="inside">
                 <field name="is_financed" invisible="1"/>
             </xpath>
         </field>

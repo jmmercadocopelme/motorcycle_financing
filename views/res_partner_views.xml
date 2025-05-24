@@ -9,7 +9,7 @@
                         type="object"
                         class="oe_stat_button"
                         icon="fa-motorcycle"
-                        attrs="{'invisible': [('application_count', '=', 0)]}">
+                        if="application_count">
                     <field string="Loan Applications" name="application_count" widget="statinfo"/>
                 </button>
             </xpath>

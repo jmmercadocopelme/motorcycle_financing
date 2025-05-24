@@ -7,11 +7,11 @@
             <form>
                 <header>
                     <button name="action_send_for_approval" type="object" string="Send for Approval"
-                            attrs="{'invisible': [('state', 'not in', ['draft'])]}" class="btn-primary"/>
+                            modifiers="{'invisible': [['state', 'not in', ['draft']]]}" class="btn-primary"/>
                     <button name="action_approve_loan" type="object" string="Approve Loan"
-                            attrs="{'invisible': [('state', '!=', 'sent')]}" class="btn-success"/>
+                            modifiers="{'invisible': [['state', '!=', 'sent']]}" class="btn-success"/>
                     <button name="action_reject_loan" type="object" string="Reject Loan"
-                            attrs="{'invisible': [('state', 'in', ['approved', 'rejected'])]}" class="btn-danger"/>
+                            modifiers="{'invisible': [['state', 'in', ['approved', 'rejected']]]}" class="btn-danger"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,sent,review,approved,rejected,signed"/>
                 </header>
                 <sheet>
@@ -38,7 +38,7 @@
                     <notebook>
                         <page string="Documents">
                             <field name="document_ids" context="{'form_view_ref': 'motorcycle_financing.view_loan_application_document_form_inline'}">
-                                <tree editable="bottom"
+                                <list editable="bottom"
                                       decoration-success="state == 'approved'"
                                       decoration-danger="state == 'rejected'"
                                       decoration-muted="state == 'new'">
@@ -47,9 +47,9 @@
                                     <field name="attachment" widget="binary"/>
                                     <field name="state" widget="badge"/>
                                     <field name="sequence"/>
-                                    <button name="action_approve_loan" type="object" icon="fa-check" string="Approve" attrs="{'invisible': [('state', '=', 'approved')]}"/>
-                                    <button name="action_reject_loan" type="object" icon="fa-times" string="Reject" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
-                                </tree>
+                                    <button name="action_approve_document" type="object" icon="fa-check" string="Approve" modifiers="{'invisible': [['state', '=', 'approved']]}"/>
+                                    <button name="action_reject_document" type="object" icon="fa-times" string="Reject" modifiers="{'invisible': [['state', '=', 'rejected']]}"/>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -68,7 +68,7 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="type_id"/>
+                        <field name="type_id" modifiers="{'invisible': [['state', '=', 'draft']]}"/>
                         <field name="attachment" widget="binary"/>
                         <field name="state" widget="badge"/>
                         <field name="sequence"/>
@@ -106,9 +106,6 @@
                 <field name="partner_id"/>
                 <field name="state"/>
                 <field name="user_id"/>
-                <filter string="Draft" domain="[('state','=','draft')]"/>
-                <filter string="Signed" domain="[('state','=','signed')]"/>
-                <filter string="Approved" domain="[('state','=','approved')]"/>
             </search>
         </field>
     </record>
