@@ -56,9 +56,6 @@
                 <field name="partner_id"/>
                 <field name="state"/>
                 <field name="user_id"/>
-                <filter string="Draft" domain="[('state','=','draft')]"/>
-                <filter string="Signed" domain="[('state','=','signed')]"/>
-                <filter string="Approved" domain="[('state','=','approved')]"/>
             </search>
         </field>
     </record>
