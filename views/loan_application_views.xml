@@ -38,7 +38,8 @@
                     <notebook>
                         <page string="Documents">
                             <field name="document_ids" context="{'form_view_ref': 'motorcycle_financing.view_loan_application_document_form_inline'}">
-                                <tree editable="bottom" decoration-success="state == 'approved'"
+                                <tree editable="bottom"
+                                      decoration-success="state == 'approved'"
                                       decoration-danger="state == 'rejected'"
                                       decoration-muted="state == 'new'">
                                     <field name="name"/>
@@ -46,8 +47,8 @@
                                     <field name="attachment" widget="binary"/>
                                     <field name="state" widget="badge"/>
                                     <field name="sequence"/>
-                                    <button name="action_approve_document" type="object" icon="fa-check" string="Approve" attrs="{'invisible': [('state', '=', 'approved')]}"/>
-                                    <button name="action_reject_document" type="object" icon="fa-times" string="Reject" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
+                                    <button name="action_approve_loan" type="object" icon="fa-check" string="Approve" attrs="{'invisible': [('state', '=', 'approved')]}"/>
+                                    <button name="action_reject_loan" type="object" icon="fa-times" string="Reject" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
                                 </tree>
                             </field>
                         </page>
